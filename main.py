@@ -14,7 +14,6 @@ def read_csv_data(path):
     return data
 
 def create_map(start_coords: tuple):
-
     location = Map(start_coords[:2])
     location.zoom_start = 15
     return location
@@ -25,7 +24,10 @@ def put_marker(coord: list, location: Map):
 
 
 if __name__ == '__main__':
+    # address where the data is
     data_path = "./data/trajectories_1.csv"
+    
+    # Extracts the data 
     data = read_csv_data(data_path)
 
     area = create_map(data[1])
