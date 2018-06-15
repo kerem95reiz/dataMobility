@@ -10,6 +10,7 @@ from os.path import isfile, join
 def read_csv_data(path):
     data = []
     with open(path, 'r', newline='') as file:
+        # reads the opened csv file
         csv_reader = reader(file)
         for line in csv_reader:
             if 'lat' not in line:
@@ -17,12 +18,16 @@ def read_csv_data(path):
     return data
 
 def create_map(start_coords: tuple):
+    # creates map instance with the given coordinates
     location = Map(start_coords[:2])
+    # scale of the starting map
     location.zoom_start = 12
     return location
 
 def put_marker(coord: list, location: Map):
+    # create a marker with a specific coords
     marker = Marker(coord[:2])
+    # add the marker to the passed the map
     marker.add_to(location)
 
 
