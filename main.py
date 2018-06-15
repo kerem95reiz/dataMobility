@@ -29,16 +29,16 @@ def create_map(start_coords: tuple):
 def put_marker(coord: list, location: Map, color_icon: str):
     
     # create a marker with a specific coords
-    marker = Marker(coord[:2], icon=Icon(color=color_icon))
+    marker = Marker(coord[:2], icon=Icon(color=color_icon, icon='star'))
     # add the marker to the passed the map
     marker.add_to(location)
 
 if __name__ == '__main__':
 
-    # Check whether the number of file that should be displayed passed
+    # Check whether the number of file that should be displayed passed over the command line
     if argv.__len__() == 2:
         try:
-            if int(argv[1]) >0:
+            if int(argv[1]) > 0:
                 number_of_files_tbr = int(argv[1])
             else:
                 print("Enter a number greater than zero!")
@@ -51,8 +51,7 @@ if __name__ == '__main__':
 
     trajectory_path = './data/'
     trajectory_datas = []
-    
-    colors_for_icons = ['red', 'blue', 'green', 'purple', 'orange', 'darkred', 'beige', 'darkblue', 'gray']
+    colors_for_icons = ['red', 'blue', 'green', 'purple', 'darkred', 'beige', 'darkblue', 'gray']
 
     # Get all the files with extension '.csv' and put them into an array with the folder name
     data_paths = [join(trajectory_path, path) for path in listdir(trajectory_path) if isfile(join(trajectory_path, path)) and ('.csv' in path) ]
