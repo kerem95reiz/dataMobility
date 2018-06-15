@@ -7,6 +7,7 @@ from base64 import b64encode
 from os import listdir
 from os.path import isfile, join
 from random import choice
+from sys import argv, exit
 
 def read_csv_data(path):
     data = []
@@ -33,9 +34,24 @@ def put_marker(coord: list, location: Map, color_icon: str):
     marker.add_to(location)
 
 if __name__ == '__main__':
+
+    # Check whether the number of file that should be displayed passed
+    if argv.__len__() == 2:
+        try:
+            if int(argv[1]) >0:
+                number_of_files_tbr = int(argv[1])
+            else:
+                print("Enter a number greater than zero!")
+                exit()
+        except Exception:
+            print("Give a numerical value!")
+            exit()
+    else:
+        number_of_files_tbr = 2 # tbr = to be read
+
     trajectory_path = './data/'
     trajectory_datas = []
-    number_of_files_tbr = 3 # tbr = to be read
+    
     colors_for_icons = ['red', 'blue', 'green', 'purple', 'orange', 'darkred', 'beige', 'darkblue', 'gray']
 
     # Get all the files with extension '.csv' and put them into an array with the folder name
@@ -46,7 +62,7 @@ if __name__ == '__main__':
         trajectory_datas.append(read_csv_data(data_paths[x]))
 
     # Create the map with a sample coord
-    area = create_map(trajectory_datas[1][1])
+    area = create_map(trajectory_datas[0][0])
 
     for tr in trajectory_datas:
         color_of_icon = choice(colors_for_icons)
